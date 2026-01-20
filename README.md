@@ -91,10 +91,8 @@ Last Accessed Time (timestamp): 2026-01-21 10:30:15.789012
 ```
 File Type Identifier/
 ├── identifier.py              # Main application with GUI and file identification
-├── parser.py                  # Parser to extract signatures from Wikipedia HTML
 ├── signatures.py              # Database of 290+ file signatures (auto-generated)
 ├── README.md                  # This file
-├── List of file signatures - Wikipedia.html  # Source data for signatures
 └── .venv/                     # Virtual environment (after setup)
 ```
 
@@ -108,14 +106,6 @@ Main application entry point. Features include:
 - `convert_size(size_bytes)`: Converts bytes to human-readable format
 - `main()`: GUI file picker and display logic
 
-#### `parser.py`
-Utility script for updating signatures from the Wikipedia HTML source:
-- `parse_hex_cell()`: Extracts hex signatures from HTML table cells
-- `parse_offset_cell()`: Extracts file offset information
-- `clean_name_cell()`: Cleans file type description from HTML
-- `format_extensions()`: Formats multiple extensions with commas
-- `emit_signatures_py()`: Generates the signatures.py module
-
 #### `signatures.py`
 Auto-generated database containing the `Signature` dataclass and `SIGNATURES` list:
 ```python
@@ -128,16 +118,6 @@ class Signature:
 ```
 
 ## Advanced Usage
-
-### Updating Signatures from Wikipedia
-
-If you want to update the signatures database with the latest file formats:
-
-```bash
-python parser.py "List of file signatures - Wikipedia.html" > signatures.py
-```
-
-This reads the Wikipedia HTML file and generates a fresh `signatures.py` with all current file signatures.
 
 ### Supported File Formats (Sample)
 
@@ -211,7 +191,6 @@ sudo apt-get install python3-tk
 ### "Unknown file type" for a valid file
 The file format may not be in the database. You can:
 1. Add the signature manually to `signatures.py`
-2. Update using the latest Wikipedia HTML source via `parser.py`
 
 ### "Rich" module not found
 Reinstall dependencies:
@@ -253,8 +232,7 @@ The file signatures database is extracted from:
 ## Contributing
 
 To contribute improvements:
-1. Add new file signatures to the Wikipedia source
-2. Run `python parser.py` to update `signatures.py`
+1. Add new file signatures to signatures.py
 3. Test with various file formats
 
 ## Author
